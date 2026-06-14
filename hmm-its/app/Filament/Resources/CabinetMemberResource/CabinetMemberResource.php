@@ -1,0 +1,130 @@
+<?php
+
+namespace App\Filament\Resources\CabinetMemberResource;
+
+use App\Filament\Resources\CabinetMemberResource\Pages;
+use App\Models\CabinetMember;
+use BackedEnum;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\EditAction;
+use Filament\Forms;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Tables;
+use Filament\Tables\Table;
+use UnitEnum;
+
+class CabinetMemberResource extends Resource
+{
+    protected static ?string $model = CabinetMember::class;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationLabel = 'Anggota Kabinet';
+    protected static string|UnitEnum|null $navigationGroup = 'Kabinet';
+    protected static ?int $navigationSort = 2;
+
+    public static function form(Schema $schema): Schema
+    {
+        return $schema->components([
+            Forms\Components\Select::make('cabinet_unit_id')
+                ->label('Unit / Divisi')
+                ->relationship('unit', 'name')
+                ->searchable()
+                ->preload()
+                ->required(),
+
+            Forms\Components\TextInput::make('name')
+                ->label('Nama Lengkap')
+                ->required()
+                ->maxLength(150),
+
+            Forms\Components\TextInput::make('position')
+                ->label('Jabatan')
+                ->required()
+                ->maxLength(150)
+                ->helperText('Contoh: Ketua Umum, Kepala Bureau, Staff Desain, dll.'),
+
+            Forms\Components\FileUpload::make('photo')
+                ->label('Foto')
+                ->image()
+                ->directory('cabinet/members')
+                ->imageResizeMode('cover')
+                ->imageCropAspectRatio('3:4')
+                ->maxSize(1024)
+                ->nullable(),
+
+            Forms\Components\TextInput::make('order_number')
+                ->label('Urutan Tampil')
+                ->numeric()
+                ->default(0),
+        ])->columns(2);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\ImageColumn::make('photo')
+                    ->label('')
+                    ->circular()
+                    ->defaultImageUrl('/images/placeholder-avatar.png'),
+
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nama')
+                    ->searchable()
+                    ->description(fn (CabinetMember $record) => $record->position),
+
+                Tables\Columns\TextColumn::make('unit.name')
+                    ->label('Unit')
+                    ->searchable()
+                    ->badge()
+                    ->color('gray'),
+
+                Tables\Columns\TextColumn::make('unit.tier')
+                    ->label('Tier')
+                    ->formatStateUsing(fn ($state) => match($state) {
+                        'leadership_core' => 'Leadership Core',
+                        'directing'       => 'Directing',
+                        'executing'       => 'Executing',
+                        'advisory'        => 'Advisory',
+                        default           => $state,
+                    })
+                    ->badge()
+                    ->color(fn ($state) => match($state) {
+                        'leadership_core' => 'danger',
+                        'directing'       => 'warning',
+                        'executing'       => 'success',
+                        default           => 'gray',
+                    }),
+
+                Tables\Columns\TextColumn::make('order_number')
+                    ->label('Urutan')
+                    ->sortable(),
+            ])
+            ->defaultSort('cabinet_unit_id')
+            ->filters([
+                Tables\Filters\SelectFilter::make('cabinet_unit_id')
+                    ->label('Filter Unit')
+                    ->relationship('unit', 'name'),
+            ])
+            ->actions([
+                EditAction::make(),
+                DeleteAction::make(),
+            ])
+            ->bulkActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index'  => Pages\ListCabinetMembers::route('/'),
+            'create' => Pages\CreateCabinetMember::route('/create'),
+            'edit'   => Pages\EditCabinetMember::route('/{record}/edit'),
+        ];
+    }
+}

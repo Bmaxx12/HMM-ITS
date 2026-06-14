@@ -1,0 +1,292 @@
+<x-layouts.app title="HMM ITS — Himpunan Mahasiswa Mesin">
+
+{{-- ===== HERO ===== --}}
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    {{-- Background Image --}}
+    <div class="absolute inset-0" style="background-image: url('{{ asset('images/Assets_home.png') }}'); background-size: cover; background-position: center;"></div>
+    {{-- Background Overlay --}}
+    <div class="absolute inset-0 bg-black/40">
+        {{-- Gradient overlay --}}
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-[#0a0a0a]"></div>
+        {{-- Grid pattern --}}
+        <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#e5e5e5 1px, transparent 1px), linear-gradient(to right, #e5e5e5 1px, transparent 1px); background-size: 60px 60px;"></div>
+    </div>
+
+    {{-- Red accent line --}}
+    <div class="absolute top-0 left-0 w-1 h-full bg-[#b91c1c] opacity-60"></div>
+
+
+
+    {{-- Content —— layout asli, hanya logo ditambah di samping tagline --}}
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-16 w-full">
+
+        {{-- Wrapper: konten kiri + kabinet kanan bawah --}}
+        <div class="relative">
+            <div class="max-w-4xl">
+
+                {{-- Logo + Tagline sejajar --}}
+                <div class="flex items-center gap-6 lg:gap-8 mb-4" data-aos="fade-up">
+                    {{-- Logo HMM ITS --}}
+                    <div class="shrink-0 self-center flex items-center justify-center">
+                        <img
+                            src="{{ asset('images/logo_hmm.png') }}"
+                            alt="Logo HMM ITS"
+                            class="h-[3rem] sm:h-[4.5rem] lg:h-[6rem] xl:h-[110px] w-auto object-contain"
+                            onerror="this.style.display='none'"
+                        >
+                    </div>
+
+                    {{-- Main Tagline & Institut Text --}}
+                    <div class="flex flex-col justify-center">
+                        <span class="text-white text-xs tracking-[0.3em] uppercase mb-1 sm:mb-2 block" data-aos="fade-right">
+                            Institut Teknologi Sepuluh Nopember
+                        </span>
+                        <h1
+                            class="text-5xl sm:text-7xl lg:text-8xl xl:text-[110px] text-white leading-none uppercase"
+                            style="font-family:'Bebas Neue',sans-serif;"
+                        >
+                            <span class="text-white">HMM ITS</span>
+                            <span class="text-white mx-1">:</span>
+                            {{ $settings->get('hero_tagline', 'Uber Alles!') }}
+                        </h1>
+                    </div>
+                </div>
+
+                {{-- Sub tagline --}}
+                <p class="text-white/90 text-base sm:text-lg max-w-xl leading-relaxed mb-10" data-aos="fade-up" data-aos-delay="100">
+                    {{ $settings->get('hero_subtext', 'Himpunan Mahasiswa Mesin ITS — membangun generasi insinyur yang unggul, berdampak, dan berjiwa sosial.') }}
+                </p>
+
+                {{-- CTA Buttons --}}
+                <div class="flex flex-wrap items-center gap-4" data-aos="fade-up" data-aos-delay="200">
+                    <a href="{{ route('about') }}"
+                       class="border border-white text-white hover:bg-white hover:text-black text-sm tracking-widest uppercase px-8 py-3 transition-all duration-300">
+                        Kenali Kami
+                    </a>
+                    <a href="{{ route('publikasi.index') }}"
+                       class="flex items-center gap-2 text-white/90 hover:text-white text-sm tracking-widest uppercase transition-all duration-300">
+                        Lihat Publikasi
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+
+            {{-- Kabinet — pojok kanan bawah relatif terhadap wrapper --}}
+            <div class="absolute bottom-0 right-0 text-right hidden sm:block" data-aos="fade-up" data-aos-delay="350">
+                <div class="h-px bg-white/30 mb-3 ml-auto" style="width: 100px;"></div>
+                <p class="text-white/60 text-[10px] tracking-[0.3em] uppercase mb-1.5">Kabinet</p>
+                <p class="text-white text-xs font-medium tracking-widest uppercase max-w-[180px] ml-auto leading-relaxed">
+                    {{ $settings->get('cabinet_name', 'Garda Aksara') }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {{-- Scroll indicator --}}
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+        <span class="text-[#404040] text-xs tracking-widest uppercase">Scroll</span>
+        <div class="w-px h-8 bg-gradient-to-b from-[#404040] to-transparent"></div>
+    </div>
+</section>
+
+{{-- ===== MARQUEE ===== --}}
+<section class="border-y border-[#2a2a2a] py-4 overflow-hidden bg-[#0a0a0a]">
+    <div class="relative flex overflow-x-hidden">
+        <div class="flex whitespace-nowrap animate-[marquee_30s_linear_infinite] gap-8">
+            @for ($i = 0; $i < 8; $i++)
+                <span class="text-[#2a2a2a] text-2xl font-bold tracking-widest uppercase" style="font-family:'Bebas Neue',sans-serif;">
+                    EST · {{ $settings->get('founding_year', '1965') }} · HIMPUNAN MAHASISWA MESIN ITS ·&nbsp;
+                </span>
+            @endfor
+        </div>
+        <div class="absolute top-0 flex whitespace-nowrap animate-[marquee_30s_linear_infinite] gap-8" aria-hidden="true">
+            @for ($i = 0; $i < 8; $i++)
+                <span class="text-[#2a2a2a] text-2xl font-bold tracking-widest uppercase" style="font-family:'Bebas Neue',sans-serif;">
+                    EST · {{ $settings->get('founding_year', '1965') }} · HIMPUNAN MAHASISWA MESIN ITS ·&nbsp;
+                </span>
+            @endfor
+        </div>
+    </div>
+    <div class="relative flex overflow-x-hidden mt-2">
+        <div class="flex whitespace-nowrap animate-[marquee-reverse_30s_linear_infinite] gap-8">
+            @for ($i = 0; $i < 8; $i++)
+                <span class="text-[#1a1a1a] text-lg font-bold tracking-[0.3em] uppercase" style="font-family:'Bebas Neue',sans-serif;">
+                    STUDY · SOCIETY · SOLIDARITY · MESIN · ITS ·&nbsp;
+                </span>
+            @endfor
+        </div>
+        <div class="absolute top-0 flex whitespace-nowrap animate-[marquee-reverse_30s_linear_infinite] gap-8" aria-hidden="true">
+            @for ($i = 0; $i < 8; $i++)
+                <span class="text-[#1a1a1a] text-lg font-bold tracking-[0.3em] uppercase" style="font-family:'Bebas Neue',sans-serif;">
+                    STUDY · SOCIETY · SOLIDARITY · MESIN · ITS ·&nbsp;
+                </span>
+            @endfor
+        </div>
+    </div>
+</section>
+
+{{-- ===== TIGA PILAR ===== --}}
+<section class="py-24 max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="mb-16 text-center" data-aos="fade-up">
+        <x-section-label label="Pilar Utama" />
+        <h2 class="text-4xl sm:text-5xl text-white mt-4 uppercase" style="font-family:'Bebas Neue',sans-serif;">
+            Tiga Pilar HMM ITS
+        </h2>
+    </div>
+
+    @php
+        $pillars = [
+            ['num' => '01', 'title' => $settings->get('pillar_1_title', 'Study'), 'desc' => $settings->get('pillar_1_desc', 'Mendorong pengembangan akademik dan penguasaan ilmu teknik mesin yang mendalam.')],
+            ['num' => '02', 'title' => $settings->get('pillar_2_title', 'Society'), 'desc' => $settings->get('pillar_2_desc', 'Membangun kepekaan sosial dan kontribusi nyata kepada masyarakat luas.')],
+            ['num' => '03', 'title' => $settings->get('pillar_3_title', 'Solidarity'), 'desc' => $settings->get('pillar_3_desc', 'Memperkuat rasa persaudaraan dan kebersamaan antar sesama anggota.')],
+        ];
+    @endphp
+
+    <div class="space-y-0">
+        @foreach ($pillars as $i => $pillar)
+        <div
+            class="grid grid-cols-1 lg:grid-cols-2 items-center gap-0 border-b border-[#2a2a2a] py-16"
+            data-aos="fade-up"
+        >
+            {{-- Number side --}}
+            <div class="{{ $i % 2 !== 0 ? 'lg:order-2' : '' }} relative overflow-hidden bg-[#141414] border border-[#2a2a2a] h-64 lg:h-96 flex items-center justify-center">
+                <span class="text-[200px] lg:text-[280px] font-bold text-[#1a1a1a] leading-none select-none absolute" style="font-family:'Bebas Neue',sans-serif;">
+                    {{ $pillar['num'] }}
+                </span>
+                <div class="relative z-10 text-center">
+                    <p class="text-[#b91c1c] text-xs tracking-widest uppercase font-medium mb-2">Pilar {{ $pillar['num'] }}</p>
+                    <p class="text-white text-4xl uppercase" style="font-family:'Bebas Neue',sans-serif;">{{ $pillar['title'] }}</p>
+                </div>
+            </div>
+
+            {{-- Text side --}}
+            <div class="{{ $i % 2 !== 0 ? 'lg:order-1 lg:pr-16' : 'lg:pl-16' }} py-8 lg:py-0">
+                <x-section-label :label="'0' . ($i + 1) . ' / ' . $pillar['title']" />
+                <h3 class="text-5xl text-white mt-4 mb-6 uppercase" style="font-family:'Bebas Neue',sans-serif;">
+                    {{ $pillar['title'] }}
+                </h3>
+                <p class="text-[#737373] text-base leading-relaxed max-w-md">
+                    {{ $pillar['desc'] }}
+                </p>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</section>
+
+{{-- ===== HERITAGE ===== --}}
+<section class="py-24 bg-[#141414] border-y border-[#2a2a2a] relative overflow-hidden">
+    {{-- Big year bg --}}
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        <span class="text-[300px] lg:text-[450px] font-bold leading-none text-[#1a1a1a] select-none" style="font-family:'Bebas Neue',sans-serif;">
+            {{ $settings->get('founding_year', '1965') }}
+        </span>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-2xl" data-aos="fade-up">
+            <x-section-label label="Heritage" />
+            <p class="text-[#737373] text-sm tracking-widest uppercase mt-3 mb-4">
+                Est. {{ $settings->get('founding_year', '1965') }}
+            </p>
+            <h2 class="text-5xl sm:text-7xl text-white uppercase leading-none mb-8" style="font-family:'Bebas Neue',sans-serif;">
+                Warisan<br>Perjuangan
+            </h2>
+            <p class="text-[#737373] text-base leading-relaxed mb-12 max-w-lg">
+                {{ $settings->get('heritage_desc', 'Berdiri sejak puluhan tahun lalu, HMM ITS terus bergerak menempa generasi insinyur terbaik bangsa.') }}
+            </p>
+
+            <div class="flex items-center gap-12">
+                <div>
+                    <p class="text-6xl text-white uppercase" style="font-family:'Bebas Neue',sans-serif;">
+                        {{ $settings->get('member_count', '500') }}+
+                    </p>
+                    <p class="text-[#737373] text-xs tracking-widest uppercase mt-1">Anggota Aktif</p>
+                </div>
+                <div class="w-px h-16 bg-[#2a2a2a]"></div>
+                <div>
+                    <p class="text-6xl text-white uppercase" style="font-family:'Bebas Neue',sans-serif;">
+                        {{ date('Y') - (int)$settings->get('founding_year', '1965') }}+
+                    </p>
+                    <p class="text-[#737373] text-xs tracking-widest uppercase mt-1">Tahun Berdiri</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- ===== HIGHLIGHTS PUBLIKASI ===== --}}
+@if ($latestPosts->isNotEmpty())
+<section class="py-24 max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-end justify-between mb-12" data-aos="fade-up">
+        <div>
+            <x-section-label label="Publikasi Terbaru" />
+            <h2 class="text-4xl sm:text-5xl text-white mt-4 uppercase" style="font-family:'Bebas Neue',sans-serif;">
+                Berita &amp; Informasi
+            </h2>
+        </div>
+        <a href="{{ route('publikasi.index') }}"
+           class="hidden sm:flex items-center gap-2 text-[#b91c1c] text-sm tracking-widest uppercase hover:gap-4 transition-all duration-200">
+            Lihat Semua
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach ($latestPosts as $post)
+            <div data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                <x-card-post :post="$post" />
+            </div>
+        @endforeach
+    </div>
+
+    <div class="mt-8 sm:hidden text-center">
+        <a href="{{ route('publikasi.index') }}"
+           class="inline-flex items-center gap-2 text-[#b91c1c] text-sm tracking-widest uppercase">
+            Lihat Semua →
+        </a>
+    </div>
+</section>
+@endif
+
+{{-- ===== SOLIDARITY FOREVER ===== --}}
+<section class="py-24 border-t border-[#2a2a2a] relative overflow-hidden">
+    {{-- Background Image --}}
+    <div class="absolute inset-0" style="background-image: url('{{ asset('images/assets_home_2.png') }}'); background-size: cover; background-position: center;"></div>
+    {{-- Background Overlay --}}
+    <div class="absolute inset-0 bg-black/40">
+        {{-- Gradient overlay --}}
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-[#0a0a0a]"></div>
+        {{-- Grid pattern --}}
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#b91c1c 1px, transparent 1px); background-size: 32px 32px;"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center" data-aos="fade-up">
+
+        <blockquote class="text-3xl sm:text-5xl lg:text-6xl text-white mt-8 mb-12 max-w-4xl mx-auto leading-tight" style="font-family:'Bebas Neue',sans-serif;">
+            "{{ $settings->get('solidarity_quote', 'Satu Tekad, Satu Langkah, Satu HMM ITS') }}"
+        </blockquote>
+
+        <div class="flex flex-wrap items-center justify-center gap-4 mt-8">
+            <a href="{{ route('publikasi.index') }}"
+               class="border border-white/30 text-white/90 hover:border-white hover:text-white text-sm tracking-widest uppercase px-6 py-3 transition-all duration-300">
+                Lihat Karya
+            </a>
+            <a href="{{ route('publikasi.index') }}"
+               class="border border-white/30 text-white/90 hover:border-white hover:text-white text-sm tracking-widest uppercase px-6 py-3 transition-all duration-300">
+                Eksplor Kegiatan
+            </a>
+            <a href="mailto:hmmits@me.its.ac.id"
+               class="bg-[#b91c1c] hover:bg-[#dc2626] text-white text-sm tracking-widest uppercase px-6 py-3 transition-all duration-300">
+                Hubungi Kami
+            </a>
+        </div>
+    </div>
+</section>
+
+</x-layouts.app>

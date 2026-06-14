@@ -1,0 +1,106 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    /* HMM ITS Color Palette */
+    --color-hmm-bg:        #0a0a0a;
+    --color-hmm-surface:   #141414;
+    --color-hmm-surface-2: #1a1a1a;
+    --color-hmm-border:    #2a2a2a;
+    --color-hmm-red:       #b91c1c;
+    --color-hmm-red-hover: #dc2626;
+    --color-hmm-white:     #ffffff;
+    --color-hmm-text:      #e5e5e5;
+    --color-hmm-muted:     #737373;
+    --color-hmm-faint:     #404040;
+
+    /* Typography */
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body:    'Inter', ui-sans-serif, system-ui, sans-serif;
+
+    /* Marquee animations */
+    --animate-marquee:         marquee 30s linear infinite;
+    --animate-marquee-reverse: marquee-reverse 30s linear infinite;
+}
+
+@keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* Base */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-hmm-bg);
+    color: var(--color-hmm-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-hmm-bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-hmm-faint);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-hmm-red);
+}
+
+/* Prose dark override */
+.prose-hmm {
+    --tw-prose-body: var(--color-hmm-text);
+    --tw-prose-headings: #ffffff;
+    --tw-prose-links: var(--color-hmm-red);
+    --tw-prose-bold: #ffffff;
+    --tw-prose-counters: var(--color-hmm-muted);
+    --tw-prose-bullets: var(--color-hmm-faint);
+    --tw-prose-hr: var(--color-hmm-border);
+    --tw-prose-quotes: var(--color-hmm-text);
+    --tw-prose-quote-borders: var(--color-hmm-red);
+    --tw-prose-code: var(--color-hmm-text);
+    --tw-prose-pre-code: var(--color-hmm-text);
+    --tw-prose-pre-bg: var(--color-hmm-surface-2);
+    --tw-prose-th-borders: var(--color-hmm-border);
+    --tw-prose-td-borders: var(--color-hmm-border);
+}
+
+/* Pagination dark theme */
+nav[role="navigation"] span[aria-current="page"] span,
+nav[role="navigation"] span[aria-disabled="true"] span {
+    background-color: var(--color-hmm-surface) !important;
+    border-color: var(--color-hmm-border) !important;
+    color: var(--color-hmm-muted) !important;
+}
+
+nav[role="navigation"] a {
+    background-color: var(--color-hmm-surface) !important;
+    border-color: var(--color-hmm-border) !important;
+    color: var(--color-hmm-text) !important;
+}
+
+nav[role="navigation"] a:hover {
+    background-color: var(--color-hmm-red) !important;
+    border-color: var(--color-hmm-red) !important;
+    color: white !important;
+}
