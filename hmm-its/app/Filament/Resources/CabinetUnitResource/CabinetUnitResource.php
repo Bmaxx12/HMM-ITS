@@ -96,7 +96,8 @@ class CabinetUnitResource extends Resource
                     ->label('Urutan')
                     ->sortable(),
             ])
-            ->defaultSort('tier')
+            ->defaultSort('order_number')
+            ->reorderable('order_number')
             ->actions([
                 EditAction::make(),
                 DeleteAction::make(),

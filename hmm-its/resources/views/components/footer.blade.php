@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <p class="text-[#737373] text-sm leading-relaxed max-w-xs">
-                    Himpunan Mahasiswa Mesin Institut Teknologi Sepuluh Nopember. Study · Society · Solidarity.
+                    Himpunan Mahasiswa Mesin Institut Teknologi Sepuluh Nopember.
                 </p>
             </div>
 
@@ -61,9 +61,6 @@
         <div class="mt-16 pt-8 border-t border-[#2a2a2a] flex flex-col sm:flex-row items-center justify-between gap-4">
             <p class="text-[#737373] text-xs tracking-widest uppercase">
                 © {{ date('Y') }} HMM ITS — All Rights Reserved
-            </p>
-            <p class="text-[#404040] text-xs tracking-widest uppercase">
-                Study · Society · Solidarity
             </p>
         </div>
     </div>

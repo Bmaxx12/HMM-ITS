@@ -74,14 +74,7 @@
 
             </div>
 
-            {{-- Kabinet — pojok kanan bawah relatif terhadap wrapper --}}
-            <div class="absolute bottom-0 right-0 text-right hidden sm:block" data-aos="fade-up" data-aos-delay="350">
-                <div class="h-px bg-white/30 mb-3 ml-auto" style="width: 100px;"></div>
-                <p class="text-white/60 text-[10px] tracking-[0.3em] uppercase mb-1.5">Kabinet</p>
-                <p class="text-white text-xs font-medium tracking-widest uppercase max-w-[180px] ml-auto leading-relaxed">
-                    {{ $settings->get('cabinet_name', 'Garda Aksara') }}
-                </p>
-            </div>
+
         </div>
     </div>
 
@@ -98,125 +91,21 @@
         <div class="flex whitespace-nowrap animate-[marquee_30s_linear_infinite] gap-8">
             @for ($i = 0; $i < 8; $i++)
                 <span class="text-[#2a2a2a] text-2xl font-bold tracking-widest uppercase" style="font-family:'Bebas Neue',sans-serif;">
-                    EST · {{ $settings->get('founding_year', '1965') }} · HIMPUNAN MAHASISWA MESIN ITS ·&nbsp;
+                    EST · 1957 · HIMPUNAN MAHASISWA MESIN ITS ·&nbsp;
                 </span>
             @endfor
         </div>
         <div class="absolute top-0 flex whitespace-nowrap animate-[marquee_30s_linear_infinite] gap-8" aria-hidden="true">
             @for ($i = 0; $i < 8; $i++)
                 <span class="text-[#2a2a2a] text-2xl font-bold tracking-widest uppercase" style="font-family:'Bebas Neue',sans-serif;">
-                    EST · {{ $settings->get('founding_year', '1965') }} · HIMPUNAN MAHASISWA MESIN ITS ·&nbsp;
-                </span>
-            @endfor
-        </div>
-    </div>
-    <div class="relative flex overflow-x-hidden mt-2">
-        <div class="flex whitespace-nowrap animate-[marquee-reverse_30s_linear_infinite] gap-8">
-            @for ($i = 0; $i < 8; $i++)
-                <span class="text-[#1a1a1a] text-lg font-bold tracking-[0.3em] uppercase" style="font-family:'Bebas Neue',sans-serif;">
-                    STUDY · SOCIETY · SOLIDARITY · MESIN · ITS ·&nbsp;
-                </span>
-            @endfor
-        </div>
-        <div class="absolute top-0 flex whitespace-nowrap animate-[marquee-reverse_30s_linear_infinite] gap-8" aria-hidden="true">
-            @for ($i = 0; $i < 8; $i++)
-                <span class="text-[#1a1a1a] text-lg font-bold tracking-[0.3em] uppercase" style="font-family:'Bebas Neue',sans-serif;">
-                    STUDY · SOCIETY · SOLIDARITY · MESIN · ITS ·&nbsp;
+                    EST · 1957 · HIMPUNAN MAHASISWA MESIN ITS ·&nbsp;
                 </span>
             @endfor
         </div>
     </div>
 </section>
 
-{{-- ===== TIGA PILAR ===== --}}
-<section class="py-24 max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="mb-16 text-center" data-aos="fade-up">
-        <x-section-label label="Pilar Utama" />
-        <h2 class="text-4xl sm:text-5xl text-white mt-4 uppercase" style="font-family:'Bebas Neue',sans-serif;">
-            Tiga Pilar HMM ITS
-        </h2>
-    </div>
 
-    @php
-        $pillars = [
-            ['num' => '01', 'title' => $settings->get('pillar_1_title', 'Study'), 'desc' => $settings->get('pillar_1_desc', 'Mendorong pengembangan akademik dan penguasaan ilmu teknik mesin yang mendalam.')],
-            ['num' => '02', 'title' => $settings->get('pillar_2_title', 'Society'), 'desc' => $settings->get('pillar_2_desc', 'Membangun kepekaan sosial dan kontribusi nyata kepada masyarakat luas.')],
-            ['num' => '03', 'title' => $settings->get('pillar_3_title', 'Solidarity'), 'desc' => $settings->get('pillar_3_desc', 'Memperkuat rasa persaudaraan dan kebersamaan antar sesama anggota.')],
-        ];
-    @endphp
-
-    <div class="space-y-0">
-        @foreach ($pillars as $i => $pillar)
-        <div
-            class="grid grid-cols-1 lg:grid-cols-2 items-center gap-0 border-b border-[#2a2a2a] py-16"
-            data-aos="fade-up"
-        >
-            {{-- Number side --}}
-            <div class="{{ $i % 2 !== 0 ? 'lg:order-2' : '' }} relative overflow-hidden bg-[#141414] border border-[#2a2a2a] h-64 lg:h-96 flex items-center justify-center">
-                <span class="text-[200px] lg:text-[280px] font-bold text-[#1a1a1a] leading-none select-none absolute" style="font-family:'Bebas Neue',sans-serif;">
-                    {{ $pillar['num'] }}
-                </span>
-                <div class="relative z-10 text-center">
-                    <p class="text-[#b91c1c] text-xs tracking-widest uppercase font-medium mb-2">Pilar {{ $pillar['num'] }}</p>
-                    <p class="text-white text-4xl uppercase" style="font-family:'Bebas Neue',sans-serif;">{{ $pillar['title'] }}</p>
-                </div>
-            </div>
-
-            {{-- Text side --}}
-            <div class="{{ $i % 2 !== 0 ? 'lg:order-1 lg:pr-16' : 'lg:pl-16' }} py-8 lg:py-0">
-                <x-section-label :label="'0' . ($i + 1) . ' / ' . $pillar['title']" />
-                <h3 class="text-5xl text-white mt-4 mb-6 uppercase" style="font-family:'Bebas Neue',sans-serif;">
-                    {{ $pillar['title'] }}
-                </h3>
-                <p class="text-[#737373] text-base leading-relaxed max-w-md">
-                    {{ $pillar['desc'] }}
-                </p>
-            </div>
-        </div>
-        @endforeach
-    </div>
-</section>
-
-{{-- ===== HERITAGE ===== --}}
-<section class="py-24 bg-[#141414] border-y border-[#2a2a2a] relative overflow-hidden">
-    {{-- Big year bg --}}
-    <div class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <span class="text-[300px] lg:text-[450px] font-bold leading-none text-[#1a1a1a] select-none" style="font-family:'Bebas Neue',sans-serif;">
-            {{ $settings->get('founding_year', '1965') }}
-        </span>
-    </div>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="max-w-2xl" data-aos="fade-up">
-            <x-section-label label="Heritage" />
-            <p class="text-[#737373] text-sm tracking-widest uppercase mt-3 mb-4">
-                Est. {{ $settings->get('founding_year', '1965') }}
-            </p>
-            <h2 class="text-5xl sm:text-7xl text-white uppercase leading-none mb-8" style="font-family:'Bebas Neue',sans-serif;">
-                Warisan<br>Perjuangan
-            </h2>
-            <p class="text-[#737373] text-base leading-relaxed mb-12 max-w-lg">
-                {{ $settings->get('heritage_desc', 'Berdiri sejak puluhan tahun lalu, HMM ITS terus bergerak menempa generasi insinyur terbaik bangsa.') }}
-            </p>
-
-            <div class="flex items-center gap-12">
-                <div>
-                    <p class="text-6xl text-white uppercase" style="font-family:'Bebas Neue',sans-serif;">
-                        {{ $settings->get('member_count', '500') }}+
-                    </p>
-                    <p class="text-[#737373] text-xs tracking-widest uppercase mt-1">Anggota Aktif</p>
-                </div>
-                <div class="w-px h-16 bg-[#2a2a2a]"></div>
-                <div>
-                    <p class="text-6xl text-white uppercase" style="font-family:'Bebas Neue',sans-serif;">
-                        {{ date('Y') - (int)$settings->get('founding_year', '1965') }}+
-                    </p>
-                    <p class="text-[#737373] text-xs tracking-widest uppercase mt-1">Tahun Berdiri</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 {{-- ===== HIGHLIGHTS PUBLIKASI ===== --}}
 @if ($latestPosts->isNotEmpty())
@@ -268,22 +157,25 @@
 
     <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center" data-aos="fade-up">
 
-        <blockquote class="text-3xl sm:text-5xl lg:text-6xl text-white mt-8 mb-12 max-w-4xl mx-auto leading-tight" style="font-family:'Bebas Neue',sans-serif;">
-            "{{ $settings->get('solidarity_quote', 'Satu Tekad, Satu Langkah, Satu HMM ITS') }}"
+        <blockquote class="text-3xl sm:text-5xl lg:text-6xl text-white mt-8 mb-6 max-w-4xl mx-auto leading-tight" style="font-family:'Bebas Neue',sans-serif;">
+            "{{ $settings->get('solidarity_quote', 'Uber Alles!') }}"
         </blockquote>
 
+        {{-- Penjelasan Uber Alles --}}
+        <div class="max-w-3xl mx-auto mb-12 text-left sm:text-center" data-aos="fade-up" data-aos-delay="100">
+            <p class="text-white/70 text-sm sm:text-base leading-relaxed text-justify">
+                Di atas segalanya. Dimaksudkan untuk memberikan semangat tertinggi agar mencapai hasil terbaik tanpa merendahkan pihak lain di sekitarnya. Über Alles merupakan semangat mental juara yang harus dimiliki oleh setiap arek Mesin. Penanaman nilai Über Alles paling lazim digunakan untuk mendidik kader mesin hingga saat ini. Apabila ditelaah lebih jauh, nilai seorang Juara tidak hanya bergantung pada ambisi pribadi dalam menginginkan kemenangan. Seorang Juara akan selalu optimis, teguh pendirian, berintegritas, sportif, mempunyai daya juang tinggi, tekad dan keyakinan kuat, serta pantang berputus asa. Dengan kata lain, pengertian "di atas segalanya" dalam konsep ini merupakan sebuah tuntutan bahwa mesin haruslah memiliki kader-kader terbaik.
+            </p>
+        </div>
+
         <div class="flex flex-wrap items-center justify-center gap-4 mt-8">
-            <a href="{{ route('publikasi.index') }}"
+            <a href="{{ route('about') }}"
                class="border border-white/30 text-white/90 hover:border-white hover:text-white text-sm tracking-widest uppercase px-6 py-3 transition-all duration-300">
-                Lihat Karya
+                About Us
             </a>
             <a href="{{ route('publikasi.index') }}"
-               class="border border-white/30 text-white/90 hover:border-white hover:text-white text-sm tracking-widest uppercase px-6 py-3 transition-all duration-300">
-                Eksplor Kegiatan
-            </a>
-            <a href="mailto:hmmits@me.its.ac.id"
                class="bg-[#b91c1c] hover:bg-[#dc2626] text-white text-sm tracking-widest uppercase px-6 py-3 transition-all duration-300">
-                Hubungi Kami
+                Publikasi
             </a>
         </div>
     </div>

@@ -19,7 +19,7 @@ use UnitEnum;
 class ManageSettings extends Page
 {
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
-    protected static ?string $navigationLabel = 'Pengaturan Website';
+    protected static ?string $navigationLabel = 'Pengaturan Web';
     protected static string|UnitEnum|null $navigationGroup = 'Pengaturan';
     protected static ?int $navigationSort = 1;
 
@@ -49,30 +49,8 @@ class ManageSettings extends Page
                                     ->label('Sub-tagline Hero')
                                     ->rows(2),
 
-                                Forms\Components\TextInput::make('founding_year')
-                                    ->label('Tahun Berdiri')
-                                    ->default('1947'),
-
-                                Forms\Components\TextInput::make('member_count')
-                                    ->label('Jumlah Anggota')
-                                    ->helperText('Contoh: 200+'),
-
-                                Forms\Components\Textarea::make('heritage_desc')
-                                    ->label('Deskripsi Heritage / Sejarah')
-                                    ->rows(3),
-
                                 Forms\Components\TextInput::make('solidarity_quote')
                                     ->label('Quote Solidarity Forever'),
-                            ])->columns(2),
-
-                        Tab::make('Tiga Pilar')
-                            ->schema([
-                                Forms\Components\TextInput::make('pillar_1_title')->label('Pilar 1 - Judul'),
-                                Forms\Components\Textarea::make('pillar_1_desc')->label('Pilar 1 - Deskripsi')->rows(2),
-                                Forms\Components\TextInput::make('pillar_2_title')->label('Pilar 2 - Judul'),
-                                Forms\Components\Textarea::make('pillar_2_desc')->label('Pilar 2 - Deskripsi')->rows(2),
-                                Forms\Components\TextInput::make('pillar_3_title')->label('Pilar 3 - Judul'),
-                                Forms\Components\Textarea::make('pillar_3_desc')->label('Pilar 3 - Deskripsi')->rows(2),
                             ])->columns(2),
 
                         Tab::make('Kabinet')
@@ -91,9 +69,14 @@ class ManageSettings extends Page
                                     ->label('Visi Kabinet')
                                     ->rows(3),
 
-                                Forms\Components\Textarea::make('movement_direction')
-                                    ->label('Arah Gerak Kabinet')
-                                    ->rows(3),
+                                Forms\Components\Textarea::make('mission')
+                                    ->label('Misi Kabinet')
+                                    ->rows(4),
+
+                                Forms\Components\Textarea::make('logo_meaning')
+                                    ->label('Arti Logo M Rotary')
+                                    ->rows(4)
+                                    ->columnSpanFull(),
                             ])->columns(2),
 
                         Tab::make('Kontak')

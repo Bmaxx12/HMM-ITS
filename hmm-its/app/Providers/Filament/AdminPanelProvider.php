@@ -26,9 +26,10 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->id('admin')
             ->path('admin')
+            ->default()
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::hex('#b91c1c'),
             ])
             ->brandName('HMM ITS')
             ->brandLogo(asset('images/logo_hmm.png'))
@@ -38,7 +39,7 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\Filament\Admin\Widgets')
+            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,

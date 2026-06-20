@@ -15,13 +15,10 @@
         <div data-aos="fade-up">
             <span class="inline-block uppercase tracking-[0.25em] text-white/90 text-xs font-medium">Tentang Kami</span>
             <h1 class="text-5xl sm:text-7xl lg:text-8xl text-white mt-4 mb-4 uppercase leading-none" style="font-family:'Bebas Neue',sans-serif;">
-                {{ $settings->get('cabinet_name', 'Garda Aksara') }}
+                HMM ITS
             </h1>
-            <p class="text-white/90 text-base sm:text-xl max-w-xl tracking-wide mb-4">
-                {{ $settings->get('cabinet_tagline', 'Bersama Membangun Mesin, Menggerakkan Bangsa') }}
-            </p>
-            <p class="text-white text-sm max-w-lg leading-relaxed">
-                {{ $settings->get('about_desc', 'HMM ITS adalah organisasi mahasiswa Teknik Mesin ITS yang berkomitmen mencetak insan mesin yang unggul, berkarakter, dan berdampak.') }}
+            <p class="text-white/90 text-base sm:text-lg max-w-2xl leading-relaxed">
+                {{ $settings->get('vision', 'HMM FT-IRS ITS yang berintegritas sebagai wadah eskalasi guna mewujudkan sinergi Keluarga Mahasiswa Mesin.') }}
             </p>
         </div>
     </div>
@@ -33,7 +30,7 @@
         <div class="mb-12 text-center" data-aos="fade-up">
             <x-section-label label="Filosofi & Identitas" />
             <h2 class="text-4xl sm:text-5xl text-white mt-4 uppercase" style="font-family:'Bebas Neue',sans-serif;">
-                Arti Logo Kabinet
+                Filosofi M Rotary
             </h2>
         </div>
 
@@ -61,56 +58,102 @@
                         <div class="absolute bottom-3 left-3 w-6 h-6 border-b border-l border-[#b91c1c]"></div>
                         <div class="absolute bottom-3 right-3 w-6 h-6 border-b border-r border-[#b91c1c]"></div>
                     </div>
-                    <p class="text-center text-[#404040] text-xs tracking-widest uppercase mt-4">
-                        {{ $settings->get('cabinet_name', 'Garda Aksara') }}
-                    </p>
                 </div>
             </div>
 
             {{-- Arti & Filosofi --}}
             <div data-aos="fade-left" data-aos-delay="100">
-                <p class="text-[#737373] text-sm leading-relaxed mb-8">
-                    Logo kabinet HMM ITS merupakan representasi visual dari nilai-nilai dan semangat perjuangan yang diemban oleh seluruh anggota. Setiap elemen dalam logo mengandung makna mendalam yang mencerminkan identitas dan cita-cita himpunan.
-                </p>
+                <div class="space-y-8">
+                    {{-- Poin 1 --}}
+                    <div class="flex items-start gap-5" data-aos="fade-up">
+                        <div class="w-10 h-10 shrink-0 bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center rounded-full mt-0.5">
+                            <span class="text-[#b91c1c] text-sm font-bold tracking-widest" style="font-family:'Bebas Neue',sans-serif;">01</span>
+                        </div>
+                        <div>
+                            <p class="text-white text-lg font-semibold mb-2" style="font-family:'Bebas Neue',sans-serif; letter-spacing: 0.05em;">Dinamika Berkelanjutan</p>
+                            <p class="text-[#a3a3a3] text-sm leading-relaxed text-justify">
+                                Bentuk huruf <strong class="text-white">M – Rotary</strong> yang tidak terputus dan tetap terbaca "M" meski diputar 180 derajat, melambangkan sebuah pergerakan dan dinamika yang selalu berkelanjutan. Ini mencerminkan semangat adaptasi dan inovasi yang tak pernah padam.
+                            </p>
+                        </div>
+                    </div>
 
-                <ul class="space-y-6">
-                    @php
-                        $logoElements = [
-                            [
-                                'symbol' => '⚙',
-                                'title'  => 'Roda Gigi',
-                                'desc'   => 'Melambangkan ilmu teknik mesin sebagai fondasi utama himpunan. Roda gigi yang berputar menggambarkan semangat kerja keras, inovasi, dan produktivitas anggota dalam berkarya.',
-                            ],
-                            [
-                                'symbol' => '🔴',
-                                'title'  => 'Warna Merah',
-                                'desc'   => 'Merepresentasikan keberanian, semangat juang, dan energi yang membara dalam diri setiap anggota HMM ITS untuk terus bergerak dan berkontribusi.',
-                            ],
-                            [
-                                'symbol' => '✦',
-                                'title'  => 'Bintang / Sinar',
-                                'desc'   => 'Simbol harapan dan cita-cita luhur. Menggambarkan tekad anggota untuk menjadi cahaya bagi sesama — baik di lingkungan kampus maupun masyarakat luas.',
-                            ],
-                            [
-                                'symbol' => '◼',
-                                'title'  => 'Bentuk Simetris',
-                                'desc'   => 'Mencerminkan keseimbangan antara tiga pilar himpunan: Study, Society, dan Solidarity — tiga aspek yang saling menopang dalam membentuk kader terbaik bangsa.',
-                            ],
-                        ];
-                    @endphp
+                    {{-- Poin 2 --}}
+                    <div class="flex items-start gap-5" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-10 h-10 shrink-0 bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center rounded-full mt-0.5">
+                            <span class="text-[#b91c1c] text-sm font-bold tracking-widest" style="font-family:'Bebas Neue',sans-serif;">02</span>
+                        </div>
+                        <div>
+                            <p class="text-white text-lg font-semibold mb-2" style="font-family:'Bebas Neue',sans-serif; letter-spacing: 0.05em;">Keberanian & Persaudaraan</p>
+                            <p class="text-[#a3a3a3] text-sm leading-relaxed text-justify">
+                                Penggunaan <strong class="text-[#b91c1c]">Warna Merah</strong> merupakan bukti nyata bahwa masyarakat mesin memiliki keberanian tinggi dalam berkarya dan menghadapi tantangan. Merah juga menyimbolkan perasaan sedarah sebagai satu kesatuan Keluarga Besar Teknik Mesin ITS.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                    @foreach ($logoElements as $i => $el)
-                        <li class="flex items-start gap-5" data-aos="fade-up" data-aos-delay="{{ $i * 80 }}">
-                            <div class="w-9 h-9 shrink-0 bg-[#141414] border border-[#2a2a2a] flex items-center justify-center mt-0.5">
-                                <span class="text-[#b91c1c] text-base">{{ $el['symbol'] }}</span>
-                            </div>
-                            <div>
-                                <p class="text-white text-sm font-semibold mb-1">{{ $el['title'] }}</p>
-                                <p class="text-[#737373] text-sm leading-relaxed">{{ $el['desc'] }}</p>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
+{{-- ===== SEJARAH MESIN ===== --}}
+<section class="py-24 bg-[#141414] border-y border-[#2a2a2a] relative overflow-hidden">
+    {{-- Big year bg --}}
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        <span class="text-[300px] lg:text-[450px] font-bold leading-none text-[#1a1a1a] select-none" style="font-family:'Bebas Neue',sans-serif;">
+            1957
+        </span>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        <div data-aos="fade-up">
+            <x-section-label label="Heritage" />
+            <h2 class="text-5xl sm:text-7xl text-white uppercase leading-none mb-12 mt-4" style="font-family:'Bebas Neue',sans-serif;">
+                Sejarah<br>Mesin
+            </h2>
+        </div>
+
+        {{-- Timeline --}}
+        <div class="mt-16 max-w-7xl mx-auto">
+            @php
+                $history = [
+                    ['year' => '1957', 'desc' => 'YPTT (Yayasan Perguruan Tinggi Teknik) mendirikan Perguruan Tinggi Teknik 10 Nopember Surabaya, yang masih terdiri dari dua jurusan yaitu Teknik Sipil dan Teknik Mesin (angkatan M1), pada tanggal 10 Nopember 1957.'],
+                    ['year' => '1960', 'desc' => 'Pada 3 November 1960, Perguruan Tinggi Teknik 10 Nopember Surabaya resmi menjadi perguruan tinggi negeri dan berganti nama menjadi Institut Teknologi Sepuluh Nopember Surabaya sebelum kemudian pada 3 Desember 1960, namanya berubah lagi menjadi Institut Teknologi Sepuluh Nopember (ITS).'],
+                    ['year' => '1961', 'desc' => 'ITS berkembang menjadi 5 jurusan dan jurusan Teknik Mesin berubah menjadi fakultas.'],
+                    ['year' => '1965', 'desc' => 'Teknik Mesin ITS pertama kali kedatangan dosen lulusan luar negeri (Jerman), yaitu a.n Dipl.Ing Oei Giok Bing dan Dipl.Ing Hariono Sumarsono. Sejak itu, semboyan Uber Alles mulai digunakan di Teknik Mesin ITS.'],
+                    ['year' => '1983', 'desc' => 'Fakultas Teknik Mesin dilebur ke dalam FTI (Fakultas Teknologi Industri) dan berubah menjadi jurusan Teknik Mesin.'],
+                    ['year' => '2001', 'desc' => 'Bidang studi S-1 Teknik Mesin ITS dikembangkan menjadi Konversi Energi, Teknik Produksi, Desain, dan Metalurgi.'],
+                    ['year' => '2024', 'desc' => 'Terdapat program studi baru yaitu Rekayasa Keselamatan Proses (RKP).'],
+                ];
+            @endphp
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-16 lg:gap-y-20 items-start">
+                @foreach ($history as $i => $item)
+                <div class="flex items-center gap-4 sm:gap-6 relative" data-aos="fade-up" data-aos-delay="{{ $i * 60 }}">
+                    
+                    {{-- Year --}}
+                    <div class="shrink-0 w-16 sm:w-20 text-right">
+                        <span class="text-[#b91c1c] text-3xl sm:text-4xl tracking-widest" style="font-family:'Bebas Neue',sans-serif;">
+                            {{ $item['year'] }}
+                        </span>
+                    </div>
+
+                    {{-- Dot & Line --}}
+                    <div class="relative shrink-0 flex items-center justify-center w-4 h-full self-stretch">
+                        <div class="absolute z-10 w-[14px] h-[14px] rounded-full bg-[#141414] border-[2.5px] border-[#b91c1c] shadow-[0_0_8px_rgba(185,28,28,0.6)]"></div>
+                        <div class="absolute top-1/2 w-[2px] h-24 bg-gradient-to-b from-[#b91c1c]/50 to-transparent"></div>
+                    </div>
+
+                    {{-- Content --}}
+                    <div class="flex-1">
+                        <div class="bg-[#1a1a1a]/40 backdrop-blur-sm p-6 sm:p-8 rounded-lg transition-all duration-300">
+                            <p class="text-[#a3a3a3] text-sm leading-relaxed text-justify">
+                                {{ $item['desc'] }}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -223,14 +266,7 @@
         @foreach ($tierOrder as $tierKey)
             @if (isset($units[$tierKey]) && $units[$tierKey]->isNotEmpty())
             <div class="mb-20" data-aos="fade-up">
-                {{-- Tier header --}}
-                <div class="flex items-center gap-4 mb-10">
-                    <div class="w-2 h-2 bg-[#b91c1c]"></div>
-                    <h3 class="text-[#737373] text-xs tracking-widest uppercase shrink-0">
-                        {{ $tierLabels[$tierKey] ?? $tierKey }}
-                    </h3>
-                    <div class="flex-1 h-px bg-[#2a2a2a]"></div>
-                </div>
+                {{-- Tier header dihapus atas permintaan user --}}
 
                 {{-- Divisi rows --}}
                 @foreach ($units[$tierKey] as $unit)
@@ -244,8 +280,7 @@
                         </div>
 
                         {{-- Group photos --}}
-                        {{-- Group photos --}}
-                        <div class="flex flex-wrap {{ in_array(strtolower($unit->name), ['kahima', 'bpi (badan pengurus inti)', 'bpi']) ? 'justify-center' : 'justify-start' }} gap-6 w-full">
+                        <div class="flex flex-wrap justify-center gap-6 w-full">
                             @php
                                 $groups = [];
                                 if (strtolower($unit->name) === 'kahima') {
@@ -261,12 +296,36 @@
                                         ];
                                     }
                                 } else {
-                                    $chunked = $unit->members->chunk(3);
-                                    foreach ($chunked as $index => $chunk) {
-                                        $groups[] = [
-                                            'name' => $unit->name . ($chunked->count() > 1 ? ' (' . ($index + 1) . ')' : ''),
-                                            'members' => $chunk->values()
-                                        ];
+                                    // Group by photo. Members without photo fall under '' group.
+                                    $grouped = $unit->members->groupBy('photo');
+                                    
+                                    // If all members have no photo, just chunk by 3 to avoid one massive group
+                                    if ($grouped->keys()->filter()->isEmpty()) {
+                                        $chunked = $unit->members->chunk(3);
+                                        foreach ($chunked as $index => $chunk) {
+                                            $groups[] = [
+                                                'name' => $unit->name . ($chunked->count() > 1 ? ' (' . ($index + 1) . ')' : ''),
+                                                'members' => $chunk->values()
+                                            ];
+                                        }
+                                    } else {
+                                        $index = 1;
+                                        foreach ($grouped as $photo => $members) {
+                                            // Extract group name from photo filename if possible, otherwise use index
+                                            $groupName = $unit->name . ' (' . $index . ')';
+                                            if ($photo) {
+                                                // e.g. organogram/PSDM 1.png -> PSDM 1
+                                                $basename = pathinfo($photo, PATHINFO_FILENAME);
+                                                if ($basename) {
+                                                    $groupName = mb_strtoupper($basename);
+                                                }
+                                            }
+                                            $groups[] = [
+                                                'name' => $groupName,
+                                                'members' => $members->values()
+                                            ];
+                                            $index++;
+                                        }
                                     }
                                 }
                             @endphp
@@ -292,7 +351,7 @@
                                     @click="openGroupModal({{ $groupData }})"
                                 >
                                     @if ($firstPhoto)
-                                        <img src="{{ asset('storage/' . $firstPhoto) }}" alt="{{ $group['name'] }}" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                                        <img src="{{ str_starts_with($firstPhoto, 'images/') ? asset($firstPhoto) : asset('storage/' . $firstPhoto) }}" alt="{{ $group['name'] }}" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
                                     @else
                                         <div class="w-full h-full flex flex-col items-center justify-center gap-2 p-4 text-center">
                                             <svg class="w-10 h-10 text-[#404040]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
@@ -363,7 +422,7 @@
                         <div class="flex gap-4 md:gap-6 items-center border-b border-[#2a2a2a] pb-6 last:border-0 last:pb-0">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-[#1a1a1a] border border-[#2a2a2a] overflow-hidden flex items-center justify-center relative">
                                 <template x-if="member.photo">
-                                    <img :src="'/storage/' + member.photo" class="w-full h-full object-cover absolute inset-0">
+                                    <img :src="member.photo.startsWith('images/') ? '/' + member.photo : '/storage/' + member.photo" class="w-full h-full object-cover absolute inset-0">
                                 </template>
                                 <template x-if="!member.photo">
                                     <span class="text-[#b91c1c] font-bold text-2xl" style="font-family:'Bebas Neue',sans-serif;" x-text="member.name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase()"></span>
@@ -381,18 +440,6 @@
     </div>
 </section>
 
-{{-- ===== ARAH GERAK ===== --}}
-@if ($settings->get('movement_direction'))
-<section class="py-24 bg-[#141414] border-t border-[#2a2a2a]">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8" data-aos="fade-up">
-        <x-section-label label="Arah Gerak" />
-        <div class="mt-8 max-w-4xl">
-            <p class="text-white text-2xl sm:text-4xl leading-relaxed font-light">
-                {{ $settings->get('movement_direction') }}
-            </p>
-        </div>
-    </div>
-</section>
-@endif
+
 
 </x-layouts.app>

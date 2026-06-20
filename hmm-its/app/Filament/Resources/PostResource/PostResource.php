@@ -27,6 +27,18 @@ class PostResource extends Resource
     protected static string|UnitEnum|null $navigationGroup = 'Publikasi';
     protected static ?int $navigationSort = 1;
 
+    protected static ?string $recordTitleAttribute = 'title';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::where('status', 'draft')->count() ?: null;
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'warning';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
@@ -105,7 +117,7 @@ class PostResource extends Resource
                     Forms\Components\DateTimePicker::make('published_at')
                         ->label('Tanggal Publish')
                         ->nullable()
-                        ->visible(fn (Forms\Get $get) => $get('status') === 'published'),
+                        ->visible(fn ($get) => $get('status') === 'published'),
                 ])->columns(2),
         ]);
     }
@@ -154,10 +166,33 @@ class PostResource extends Resource
                     ]),
                 Tables\Filters\SelectFilter::make('category')
                     ->relationship('category', 'name'),
+                Tables\Filters\Filter::make('published_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('published_from')->label('Dari Tanggal'),
+                        Forms\Components\DatePicker::make('published_until')->label('Sampai Tanggal'),
+                    ])
+                    ->query(function (\Illuminate\Database\Eloquent\Builder $query, array $data): \Illuminate\Database\Eloquent\Builder {
+                        return $query
+                            ->when(
+                                $data['published_from'],
+                                fn (\Illuminate\Database\Eloquent\Builder $query, $date): \Illuminate\Database\Eloquent\Builder => $query->whereDate('published_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['published_until'],
+                                fn (\Illuminate\Database\Eloquent\Builder $query, $date): \Illuminate\Database\Eloquent\Builder => $query->whereDate('published_at', '<=', $date),
+                            );
+                    }),
+
             ])
             ->actions([
                 EditAction::make(),
                 DeleteAction::make(),
+                Action::make('preview')
+                    ->label('Preview')
+                    ->icon('heroicon-o-eye')
+                    ->url(fn (Post $record): string => route('publikasi.show', $record->slug))
+                    ->openUrlInNewTab(),
+
 
                 Action::make('publish')
                     ->label('Publish')

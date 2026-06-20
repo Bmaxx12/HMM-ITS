@@ -27,38 +27,41 @@ class CabinetMemberResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Forms\Components\Select::make('cabinet_unit_id')
-                ->label('Unit / Divisi')
-                ->relationship('unit', 'name')
-                ->searchable()
-                ->preload()
-                ->required(),
+            \Filament\Schemas\Components\Section::make('Informasi Anggota')
+                ->schema([
+                    Forms\Components\Select::make('cabinet_unit_id')
+                        ->label('Unit / Divisi')
+                        ->relationship('unit', 'name')
+                        ->searchable()
+                        ->preload()
+                        ->required(),
 
-            Forms\Components\TextInput::make('name')
-                ->label('Nama Lengkap')
-                ->required()
-                ->maxLength(150),
+                    Forms\Components\TextInput::make('name')
+                        ->label('Nama Lengkap')
+                        ->required()
+                        ->maxLength(150),
 
-            Forms\Components\TextInput::make('position')
-                ->label('Jabatan')
-                ->required()
-                ->maxLength(150)
-                ->helperText('Contoh: Ketua Umum, Kepala Bureau, Staff Desain, dll.'),
+                    Forms\Components\TextInput::make('position')
+                        ->label('Jabatan')
+                        ->required()
+                        ->maxLength(150)
+                        ->helperText('Contoh: Ketua Umum, Kepala Bureau, Staff Desain, dll.'),
 
-            Forms\Components\FileUpload::make('photo')
-                ->label('Foto')
-                ->image()
-                ->directory('cabinet/members')
-                ->imageResizeMode('cover')
-                ->imageCropAspectRatio('3:4')
-                ->maxSize(1024)
-                ->nullable(),
+                    Forms\Components\FileUpload::make('photo')
+                        ->label('Foto')
+                        ->image()
+                        ->directory('cabinet/members')
+                        ->imageResizeMode('cover')
+                        ->imageCropAspectRatio('3:4')
+                        ->maxSize(1024)
+                        ->nullable(),
 
-            Forms\Components\TextInput::make('order_number')
-                ->label('Urutan Tampil')
-                ->numeric()
-                ->default(0),
-        ])->columns(2);
+                    Forms\Components\TextInput::make('order_number')
+                        ->label('Urutan Tampil')
+                        ->numeric()
+                        ->default(0),
+                ])->columns(2),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -102,7 +105,13 @@ class CabinetMemberResource extends Resource
                     ->label('Urutan')
                     ->sortable(),
             ])
-            ->defaultSort('cabinet_unit_id')
+            ->defaultSort('order_number')
+            ->reorderable('order_number')
+            ->defaultGroup('unit.name')
+            ->groups([
+                Tables\Grouping\Group::make('unit.name')
+                    ->label('Unit / Divisi'),
+            ])
             ->filters([
                 Tables\Filters\SelectFilter::make('cabinet_unit_id')
                     ->label('Filter Unit')
