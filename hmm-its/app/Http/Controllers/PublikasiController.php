@@ -12,11 +12,11 @@ class PublikasiController extends Controller
     public function index(Request $request)
     {
         $settings = \Illuminate\Support\Facades\Cache::remember('site_settings', 3600, function () {
-            return SiteSetting::pluck('value', 'key');
+            return SiteSetting::pluck('value', 'key')->toArray();
         });
-        $categories = \Illuminate\Support\Facades\Cache::remember('categories', 3600, function () {
-            return Category::all();
-        });
+        $settings = collect($settings);
+
+        $categories = Category::all();
 
         $posts = Post::with('category')
             ->published()
