@@ -10,8 +10,9 @@ class HomeController extends Controller
     public function index()
     {
         $settings = \Illuminate\Support\Facades\Cache::remember('site_settings', 3600, function () {
-            return SiteSetting::pluck('value', 'key');
+            return SiteSetting::pluck('value', 'key')->toArray();
         });
+        $settings = collect($settings);
 
         $latestPosts = Post::with('category')
             ->published()
