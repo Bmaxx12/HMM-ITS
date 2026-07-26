@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ $description ?? 'Website resmi Himpunan Mahasiswa Mesin ITS — Study, Society, Solidarity.' }}">
-    <title>{{ $title ?? 'HMM ITS' }}</title>
+    <meta name="description" content="Website Resmi Himpunan Mahasiswa Mesin (HMM) FT-IRS Institut Teknologi Sepuluh Nopember Surabaya. Wadah eskalasi dan karya mahasiswa mesin ITS.">
+    <meta name="keywords" content="HMM ITS, Mahasiswa Mesin ITS, Teknik Mesin ITS, Garda Aksara, FT-IRS ITS">
+    <title>HMM ITS - Himpunan Mahasiswa Mesin FT-IRS ITS</title>
     <link rel="icon" type="image/png" href="{{ asset('images/logo_hmm.png') }}">
 
     {{-- Fonts --}}
