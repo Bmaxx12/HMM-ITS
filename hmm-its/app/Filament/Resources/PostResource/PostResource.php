@@ -49,7 +49,7 @@ class PostResource extends Resource
                         ->required()
                         ->maxLength(255)
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn ($state, Forms\Set $set) =>
+                        ->afterStateUpdated(fn ($state, \Filament\Schemas\Components\Utilities\Set $set) =>
                             $set('slug', Str::slug($state))
                         ),
 
@@ -84,9 +84,9 @@ class PostResource extends Resource
                     Forms\Components\FileUpload::make('thumbnail')
                         ->label('Thumbnail')
                         ->image()
+                        ->disk('public')
                         ->directory('posts/thumbnails')
-                        ->imageResizeMode('cover')
-                        ->imageCropAspectRatio('16:9')
+                        ->imageEditor()
                         ->maxSize(2048),
 
                     Forms\Components\Textarea::make('excerpt')
@@ -128,6 +128,7 @@ class PostResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('thumbnail')
                     ->label('')
+                    ->disk('public')
                     ->width(80)
                     ->height(50)
                     ->defaultImageUrl('/images/placeholder.png'),

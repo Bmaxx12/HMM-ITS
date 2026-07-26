@@ -33,7 +33,7 @@ class CategoryResource extends Resource
                 ->required()
                 ->maxLength(100)
                 ->live(onBlur: true)
-                ->afterStateUpdated(fn ($state, Forms\Set $set) =>
+                ->afterStateUpdated(fn ($state, \Filament\Schemas\Components\Utilities\Set $set) =>
                     $set('slug', Str::slug($state))
                 ),
 

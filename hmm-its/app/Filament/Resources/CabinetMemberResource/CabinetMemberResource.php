@@ -47,19 +47,27 @@ class CabinetMemberResource extends Resource
                         ->maxLength(150)
                         ->helperText('Contoh: Ketua Umum, Kepala Bureau, Staff Desain, dll.'),
 
+                    Forms\Components\TextInput::make('group_name')
+                        ->label('Kelompok Foto / Sub-Kelompok')
+                        ->placeholder('Contoh: Sub 1, Sub 2, atau Kelompok A')
+                        ->maxLength(100)
+                        ->helperText('Isi dengan nama kelompok yang sama (misal: "Sub 1") untuk menyatukan orang-orang ke dalam 1 foto kelompok yang sama!'),
+
                     Forms\Components\FileUpload::make('photo')
-                        ->label('Foto')
+                        ->label('Foto Anggota / Foto Kelompok')
                         ->image()
+                        ->disk('public')
                         ->directory('cabinet/members')
-                        ->imageResizeMode('cover')
-                        ->imageCropAspectRatio('3:4')
-                        ->maxSize(1024)
-                        ->nullable(),
+                        ->imageEditor()
+                        ->maxSize(2048)
+                        ->nullable()
+                        ->helperText('Foto yang diupload pada salah satu anggota di kelompok ini akan otomatis dipakai untuk seluruh anggota kelompok.'),
 
                     Forms\Components\TextInput::make('order_number')
-                        ->label('Urutan Tampil')
+                        ->label('Urutan Tampil dalam Foto')
                         ->numeric()
-                        ->default(0),
+                        ->default(0)
+                        ->helperText('Menentukan urutan nama orang saat foto kelompok diklik (misal: 1 = paling kiri).'),
                 ])->columns(2),
         ]);
     }
@@ -69,7 +77,15 @@ class CabinetMemberResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('photo')
-                    ->label('')
+                    ->label('Foto')
+                    ->getStateUsing(function (CabinetMember $record) {
+                        if (!$record->photo) return null;
+                        if (str_starts_with($record->photo, 'images/')) {
+                            return asset($record->photo);
+                        }
+                        return $record->photo;
+                    })
+                    ->disk('public')
                     ->circular()
                     ->defaultImageUrl('/images/placeholder-avatar.png'),
 

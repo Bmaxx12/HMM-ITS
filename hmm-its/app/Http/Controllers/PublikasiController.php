@@ -11,11 +11,16 @@ class PublikasiController extends Controller
 {
     public function index(Request $request)
     {
-        $settings = SiteSetting::pluck('value', 'key');
-        $categories = Category::all();
+        $settings = \Illuminate\Support\Facades\Cache::remember('site_settings', 3600, function () {
+            return SiteSetting::pluck('value', 'key');
+        });
+        $categories = \Illuminate\Support\Facades\Cache::remember('categories', 3600, function () {
+            return Category::all();
+        });
 
         $posts = Post::with('category')
             ->published()
+            ->latest('published_at')
             ->when($request->category, function ($query, $category) {
                 $query->whereHas('category', fn ($q) =>
                     $q->where('slug', $category)

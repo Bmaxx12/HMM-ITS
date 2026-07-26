@@ -296,36 +296,35 @@
                                         ];
                                     }
                                 } else {
-                                    // Group by photo. Members without photo fall under '' group.
-                                    $grouped = $unit->members->groupBy('photo');
-                                    
-                                    // If all members have no photo, just chunk by 3 to avoid one massive group
-                                    if ($grouped->keys()->filter()->isEmpty()) {
-                                        $chunked = $unit->members->chunk(3);
-                                        foreach ($chunked as $index => $chunk) {
-                                            $groups[] = [
-                                                'name' => $unit->name . ($chunked->count() > 1 ? ' (' . ($index + 1) . ')' : ''),
-                                                'members' => $chunk->values()
-                                            ];
+                                    // Group by explicit group_name first, or photo if group_name is not specified
+                                    $grouped = $unit->members->groupBy(function ($member) {
+                                        if (!empty($member->group_name)) {
+                                            return 'group:' . trim($member->group_name);
                                         }
-                                    } else {
-                                        $index = 1;
-                                        foreach ($grouped as $photo => $members) {
-                                            // Extract group name from photo filename if possible, otherwise use index
-                                            $groupName = $unit->name . ' (' . $index . ')';
-                                            if ($photo) {
-                                                // e.g. organogram/PSDM 1.png -> PSDM 1
-                                                $basename = pathinfo($photo, PATHINFO_FILENAME);
-                                                if ($basename) {
+                                        return 'photo:' . ($member->photo ?? 'empty');
+                                    });
+                                    
+                                    $index = 1;
+                                    foreach ($grouped as $groupKey => $members) {
+                                        if (str_starts_with($groupKey, 'group:')) {
+                                            $customName = substr($groupKey, 6);
+                                            $groupName = $unit->name . ' (' . $customName . ')';
+                                        } else {
+                                            $groupName = $unit->name . ' ' . $index;
+                                            $firstPhoto = $members->firstWhere('photo', '!=', null)->photo ?? null;
+                                            if ($firstPhoto) {
+                                                $basename = pathinfo($firstPhoto, PATHINFO_FILENAME);
+                                                if ($basename && strlen($basename) < 20 && !preg_match('/^[0-[#0-9A-Z]{20,}$/i', $basename)) {
                                                     $groupName = mb_strtoupper($basename);
                                                 }
                                             }
-                                            $groups[] = [
-                                                'name' => $groupName,
-                                                'members' => $members->values()
-                                            ];
-                                            $index++;
                                         }
+
+                                        $groups[] = [
+                                            'name' => $groupName,
+                                            'members' => $members->values()
+                                        ];
+                                        $index++;
                                     }
                                 }
                             @endphp

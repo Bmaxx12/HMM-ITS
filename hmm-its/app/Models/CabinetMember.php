@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class CabinetMember extends Model
 {
     protected $fillable = [
-    'cabinet_unit_id', 'name', 'position', 'photo', 'order_number'
-];
+        'cabinet_unit_id', 'name', 'position', 'photo', 'group_name', 'order_number'
+    ];
 
 public function unit()
 {

@@ -9,7 +9,9 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $settings = SiteSetting::pluck('value', 'key');
+        $settings = \Illuminate\Support\Facades\Cache::remember('site_settings', 3600, function () {
+            return SiteSetting::pluck('value', 'key');
+        });
 
         $units = CabinetUnit::with(['members' => function ($query) {
                 $query->orderBy('order_number');

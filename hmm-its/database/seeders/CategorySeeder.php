@@ -9,16 +9,13 @@ class CategorySeeder extends Seeder
 {
     public function run(): void
     {
-        $categories = [
-            ['name' => 'Berita Organisasi', 'slug' => 'berita-organisasi'],
-            ['name' => 'Prestasi',           'slug' => 'prestasi'],
-            ['name' => 'Kegiatan',           'slug' => 'kegiatan'],
-            ['name' => 'Akademik',           'slug' => 'akademik'],
-            ['name' => 'Sosial',             'slug' => 'sosial'],
-        ];
-
-        foreach ($categories as $cat) {
-            Category::firstOrCreate(['slug' => $cat['slug']], $cat);
+        $units = \App\Models\CabinetUnit::all();
+        
+        foreach ($units as $unit) {
+            // Extract abbreviation if possible, or use full name. Let's use full name for now.
+            $name = $unit->name;
+            $slug = \Illuminate\Support\Str::slug($name);
+            Category::firstOrCreate(['slug' => $slug], ['name' => $name]);
         }
     }
 }
