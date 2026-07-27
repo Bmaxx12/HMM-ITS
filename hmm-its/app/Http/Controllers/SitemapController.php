@@ -9,7 +9,7 @@ class SitemapController extends Controller
 {
     public function index()
     {
-        $posts = Post::where('is_published', true)->get();
+        $posts = Post::published()->get();
 
         $content = view('sitemap', compact('posts'));
 
