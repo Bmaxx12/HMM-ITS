@@ -6,7 +6,11 @@
     <meta name="description" content="Website Resmi Himpunan Mahasiswa Mesin (HMM) FT-IRS Institut Teknologi Sepuluh Nopember Surabaya. Wadah eskalasi dan karya mahasiswa mesin ITS.">
     <meta name="keywords" content="HMM ITS, Mahasiswa Mesin ITS, Teknik Mesin ITS, Garda Aksara, FT-IRS ITS">
     <title>HMM ITS - Himpunan Mahasiswa Mesin FT-IRS ITS</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/logo_hmm.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/logo_hmm.png') }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('images/logo_hmm.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/logo_hmm.png') }}">
+    <link rel="shortcut icon" href="{{ asset('images/logo_hmm.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo_hmm.png') }}">
 
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
