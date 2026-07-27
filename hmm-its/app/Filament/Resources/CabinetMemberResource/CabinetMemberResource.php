@@ -78,16 +78,9 @@ class CabinetMemberResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('photo')
                     ->label('Foto')
-                    ->getStateUsing(function (CabinetMember $record) {
-                        if (!$record->photo) return null;
-                        if (str_starts_with($record->photo, 'images/')) {
-                            return asset($record->photo);
-                        }
-                        return $record->photo;
-                    })
                     ->disk('public')
                     ->circular()
-                    ->defaultImageUrl('/images/placeholder-avatar.png'),
+                    ->defaultImageUrl(asset('images/logo_hmm.png')),
 
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nama')
