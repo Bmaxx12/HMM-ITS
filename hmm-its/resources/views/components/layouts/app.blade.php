@@ -1,3 +1,4 @@
+@props(['title' => null])
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -5,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Website Resmi Himpunan Mahasiswa Mesin (HMM) FT-IRS Institut Teknologi Sepuluh Nopember Surabaya. Wadah eskalasi dan karya mahasiswa mesin ITS.">
     <meta name="keywords" content="HMM ITS, Mahasiswa Mesin ITS, Teknik Mesin ITS, Garda Aksara, FT-IRS ITS">
-    <title>HMM ITS - Himpunan Mahasiswa Mesin FT-IRS ITS</title>
+    <title>{{ $title ?? 'HMM ITS - Himpunan Mahasiswa Mesin FT-IRS ITS' }}</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/logo_hmm.png') }}">
     <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('images/logo_hmm.png') }}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/logo_hmm.png') }}">
