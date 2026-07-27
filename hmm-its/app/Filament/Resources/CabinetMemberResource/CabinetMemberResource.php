@@ -78,7 +78,13 @@ class CabinetMemberResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('photo')
                     ->label('Foto')
-                    ->disk('public')
+                    ->getStateUsing(function (CabinetMember $record) {
+                        if (!$record->photo) return null;
+                        if (str_starts_with($record->photo, 'images/')) {
+                            return asset($record->photo);
+                        }
+                        return asset('storage/' . $record->photo);
+                    })
                     ->circular()
                     ->defaultImageUrl(asset('images/logo_hmm.png')),
 
